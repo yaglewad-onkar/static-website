@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="./todo.js" type="module"></script>
+  <script src="./server.js" type="module"></script>
+  <script src="./api.js" type="module"></script>
+
+  <script type="module">
+    import {
+      loadAll,
+      addTodo,
+      onKeyUp
+    } from './todo.js'
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      Object.assign(window, {
+        addTodo,
+        onKeyUp
+      })
+
+      await loadAll().catch(console.error)
+    })
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div id="header" class="header">
+      <h2>To Do List</h2>
+      <div class="add-container">
+        <input type="text" id="todo-text" placeholder="Things to be done..." onkeyup="onKeyUp()" />
+        <button onclick="addTodo()" class="btn add-btn" disabled>Add</button>
+      </div>
+    </div>
+
+  <ul id="todo-list">
+    
+  </ul>
+</div>
+</body>
+
+</html>
