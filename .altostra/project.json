@@ -1,0 +1,69 @@
+{
+  "id": "static-website-ig00hqj",
+  "name": "static-website",
+  "type": "altostra",
+  "description": "A static website with CDN distribution",
+  "created": "2023-01-18T15:08:28.118Z",
+  "blueprints": [
+    {
+      "id": "static-website-ig00hqj",
+      "name": "static-website",
+      "description": "Static Website Template",
+      "version": "2019-10-24",
+      "connections": {
+        "SiteCdn01": {
+          "SiteFiles01": {
+            "bucketRoot": "",
+            "from": "SiteCdn01",
+            "route": "",
+            "to": "SiteFiles01",
+            "type": "connection.dependency.cdn-storage"
+          }
+        }
+      },
+      "metadata": {
+        "designer": {
+          "resourcePositions": {
+            "SiteCdn01": {
+              "x": 409,
+              "y": 282,
+              "z": 0
+            },
+            "SiteFiles01": {
+              "x": 648,
+              "y": 282,
+              "z": 0
+            }
+          }
+        }
+      },
+      "parameters": {},
+      "resources": {
+        "SiteCdn01": {
+          "defaultRoot": "index.html",
+          "id": "SiteCdn01",
+          "isSPA": false,
+          "name": "site-cdn",
+          "tls": {
+            "httpRedirection": true,
+            "useTLS": true
+          },
+          "type": "resource.cdn"
+        },
+        "SiteFiles01": {
+          "accessLevel": "public-read",
+          "filesSources": [
+            {
+              "path": "public",
+              "type": "files-source.project-dir"
+            }
+          ],
+          "id": "SiteFiles01",
+          "name": "site-files",
+          "type": "resource.file-store"
+        }
+      },
+      "unsafe": false
+    }
+  ]
+}
